@@ -8,7 +8,7 @@
 #ifndef DLLIST_H_
 #define DLLIST_H_
 
-namespace mySTL {
+namespace HKSTL {
 
 template<class T>
 class DLList {
@@ -36,6 +36,8 @@ public:
 
 	T set(size_t i, T x);
 	virtual void add(size_t i, T x);
+  T front() { return dummy.next->x; }
+  T back() { return dummy.prev->x; }
 	void push_back(T x) 	{ add(size(), x); }
 	void push_front(T x) 	{ add(0, x); }	
 	void remove(size_t i);

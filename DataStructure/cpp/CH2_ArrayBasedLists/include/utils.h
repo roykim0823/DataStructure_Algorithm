@@ -1,10 +1,3 @@
-/*
- * utils.h
- *
- *  Created on: 2011-11-23
- *      Author: morin
- */
-
 #ifndef UTILS_H_
 #define UTILS_H_
 

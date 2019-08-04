@@ -6,7 +6,7 @@
 #define SLLIST_H_
 #include <stdlib.h>
 
-namespace mySTL {
+namespace HKSTL {
 
 template<class T>  	
 class SLList {	// Single-Linked List, a sequence of Nodes
@@ -15,27 +15,24 @@ protected:
 	struct Node {
 		T x;		// Data
 		Node *next;	// Link
-		Node(T x0) { 	// Constructor
-			x = x0; 	// rev from: x=0
-			next = NULL;
-		}
+		Node(T x0): x(x0), next(nullptr) { } 
 	};
 	// For efficiency, SLList uses head and tail to keep track of the first and the last node
-	Node *head; 	// Head node
-	Node *tail;   	// Tail node: to implement add() function 
-	size_t n;         	// Size, the length of the sequence
+	Node *head;  // Head node
+	Node *tail;  // Tail node: to implement add() function 
+	size_t n;    // Size, the length of the sequence
 
 public:
 	SLList() {
 		n = 0;
-		head = tail = NULL;
+		head = tail = nullptr;
 	}
 
 	virtual ~SLList() { clear(); }
 
-	size_t size() 	{ return n; 	}
-	T front() 	{ return head->x; }
-	T back() 	{ return tail->x; }
+	size_t size() { return n; 	}
+	T front()     { return head->x; }
+	T back()      { return tail->x; }
 	void push_back(T x);
 	void push_front(T x);
 	void pop_front();
@@ -76,19 +73,19 @@ void SLList<T>::pop_front()
 	Node *u = head;	// u points to the node that will be deleted	
 	head = head->next;
 	delete u;
-	if (--n == 0) tail = NULL;
+	if (--n == 0) tail = nullptr;
 }
 
 template<typename T>
 void SLList<T>::clear()
 {
 	Node *u = head;
-  	while (u != NULL) {
+  	while (u != nullptr) {
    		Node *w = u;
    		u = u->next;
    		delete w;
    	}
 }
 
-} /* namespace ods */
+} /* namespace HKSTL */
 #endif /* SLLIST_H_ */

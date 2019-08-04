@@ -1,16 +1,17 @@
 /*
- * SLList.h
+ * SLList_SHARED.h
  */
 
-#ifndef SLLIST_H_
-#define SLLIST_H_
+#ifndef SLLIST_SHARED_H_
+#define SLLIST_SHARED_H_
 //#include <stdlib.h>
 #include <memory>	// shared_ptr
 
-namespace mySTL {
+namespace HKSTL {
 
 template<class T>  	
-class SLList {	// Single-Linked List, a sequence of Nodes
+// It is hard to make place holders (head and tail) unique_pointer 
+class SLList_SHARED {	// Single-Linked List, a sequence of Nodes
 protected:
 	// 
 	struct Node {
@@ -24,18 +25,18 @@ protected:
 			//cout << "delete " << x << endl;
 		}
 	};
-	// For efficiency, SLList uses head and tail to keep track of the first and the last node
+	// For efficiency, SLList_SHARED uses head and tail to keep track of the first and the last node
 	std::shared_ptr<Node> head; 	// Head node
 	std::shared_ptr<Node> tail;   	// Tail node: to implement push_back() function 
 	size_t n;         	// Size, the length of the sequence
 
 public:
-	SLList() {
+	SLList_SHARED() {
 		n = 0;
 		head = tail = nullptr;
 	}
 
-	virtual ~SLList() { clear(); }
+	virtual ~SLList_SHARED() { clear(); }
 
 	size_t size() 	{ return n; 	}
 	T front() 	{ return head->x; }
@@ -49,9 +50,10 @@ public:
 
 // push_back() is inefficient if there is no tail node
 template<typename T>
-void SLList<T>::push_back(T x)	 // add 
+void SLList_SHARED<T>::push_back(T x)	 // add 
 {
-	std::shared_ptr<Node> u(new Node(x));
+	// std::shared_ptr<Node> u(new Node(x));
+	std::shared_ptr<Node> u = std::make_shared<Node>(x);
 	if (n == 0) {
 		head = u;		// head points to the new node if the list is empty
 	} else {
@@ -62,10 +64,11 @@ void SLList<T>::push_back(T x)	 // add
 }
 
 template<typename T>
-void SLList<T>::push_front(T x)	// push 
+void SLList_SHARED<T>::push_front(T x)	// push 
 {
-	//Node *u = new Node(x);
-	std::shared_ptr<Node> u(new Node(x));
+	// Node *u = new Node(x);
+	// std::shared_ptr<Node> u(new Node(x));
+	std::shared_ptr<Node> u = std::make_shared<Node>(x);
 	u->next = head;
 	head = u;
 	if (n == 0) {
@@ -75,7 +78,7 @@ void SLList<T>::push_front(T x)	// push
 }
 
 template<typename T>
-void SLList<T>::pop_front()
+void SLList_SHARED<T>::pop_front()
 {
 	assert(n>0);
 	//Node *u = head;	// u points to the node that will be deleted	
@@ -85,7 +88,7 @@ void SLList<T>::pop_front()
 }
 
 template<typename T>
-void SLList<T>::clear()
+void SLList_SHARED<T>::clear()
 {
 	std::shared_ptr<Node> u = head;
   	while (u != NULL) {
@@ -95,5 +98,5 @@ void SLList<T>::clear()
    	}
 }
 
-} /* namespace ods */
-#endif /* SLLIST_H_ */
+}  // namespace HKSTL 
+#endif  // SLLIST_SHARED_H_

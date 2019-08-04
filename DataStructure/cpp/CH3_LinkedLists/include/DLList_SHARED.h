@@ -1,18 +1,11 @@
-/*
- * DLList.h
- *
- *  Created on: 2011-11-24
- *      Author: morin
- */
-
-#ifndef DLLIST_H_
-#define DLLIST_H_
+#ifndef DLLIST_SHARED_H_
+#define DLLIST_SHARED_H_
 #include <memory>
 
-namespace mySTL {
+namespace HKSTL {
 
 template<class T>
-class DLList {
+class DLList_SHARED {
 protected:
 	class Node {
 	public:
@@ -33,14 +26,16 @@ protected:
 	void addBefore(std::shared_ptr<Node> w, T x);
 	std::shared_ptr<Node> getNode(size_t i);
 public:
-	DLList();
-	virtual ~DLList();
+	DLList_SHARED();
+	virtual ~DLList_SHARED();
 	size_t size() { return n; }
 	T get(size_t i);
 	T& operator[](size_t i) { return getNode(i)->x;	}
 
 	T set(size_t i, T x);
 	virtual void add(size_t i, T x);
+  T front() { return dummy->next->x; }
+  T back() { return dummy->prev->x; }
 	void push_back(T x) 	{ add(size(), x); }
 	void push_front(T x) 	{ add(0, x); }	
 	void remove(size_t i);
@@ -50,7 +45,7 @@ public:
 };
 
 template<class T>
-DLList<T>::DLList() {
+DLList_SHARED<T>::DLList_SHARED() {
 //	dummy.next = std::make_shared<Node>(&dummy);
 //	dummy.prev = std::make_shared<Node>(&dummy);
 	dummy = std::make_shared<Node>();
@@ -60,7 +55,7 @@ DLList<T>::DLList() {
 }
 
 template<class T>
-void DLList<T>::addBefore(std::shared_ptr<Node> w, T x) {
+void DLList_SHARED<T>::addBefore(std::shared_ptr<Node> w, T x) {
 	std::shared_ptr<Node> u(new Node);
 	u->x = x;
 	u->prev = w->prev;	
@@ -72,7 +67,7 @@ void DLList<T>::addBefore(std::shared_ptr<Node> w, T x) {
 }
 
 template<class T>
-std::shared_ptr<typename DLList<T>::Node> DLList<T>::getNode(size_t i) {
+std::shared_ptr<typename DLList_SHARED<T>::Node> DLList_SHARED<T>::getNode(size_t i) {
 	//Node* p;//=&dummy;
 	std::shared_ptr<Node> p;
 	if (i < n / 2) {	// start from the fist node in forward
@@ -89,12 +84,12 @@ std::shared_ptr<typename DLList<T>::Node> DLList<T>::getNode(size_t i) {
 
 
 template<class T>
-DLList<T>::~DLList() {
+DLList_SHARED<T>::~DLList_SHARED() {
 	clear();
 }
 
 template<class T>
-void DLList<T>::clear() {
+void DLList_SHARED<T>::clear() {
 	//Node *u = dummy.next;
 	std::shared_ptr<Node> u = dummy->next;
 	while (u != dummy) {
@@ -109,7 +104,7 @@ void DLList<T>::clear() {
 }
 
 template<class T>
-void DLList<T>::remove(std::shared_ptr<Node> w) {
+void DLList_SHARED<T>::remove(std::shared_ptr<Node> w) {
 	w->prev->next = w->next;
 	w->next->prev = w->prev;
 	//delete w;
@@ -118,12 +113,12 @@ void DLList<T>::remove(std::shared_ptr<Node> w) {
 
 
 template<class T>
-T DLList<T>::get(size_t i) {
+T DLList_SHARED<T>::get(size_t i) {
     return getNode(i)->x;
 }
 
 template<class T>
-T DLList<T>::set(size_t i, T x) {
+T DLList_SHARED<T>::set(size_t i, T x) {
 	//Node* u = getNode(i);
 	std::shared_ptr<Node> u = getNode(i);
 	T y = u->x;
@@ -132,12 +127,12 @@ T DLList<T>::set(size_t i, T x) {
 }
 
 template<class T>
-void DLList<T>::add(size_t i, T x) {
+void DLList_SHARED<T>::add(size_t i, T x) {
     addBefore(getNode(i), x);
 }
 
 template<class T>
-void DLList<T>::remove(size_t i) {
+void DLList_SHARED<T>::remove(size_t i) {
 	std::shared_ptr<Node> w = getNode(i);
 	//T x = w->x;
 	remove(w);
@@ -145,5 +140,5 @@ void DLList<T>::remove(size_t i) {
 }
 
 
-} /* namespace ods */
-#endif /* DLLIST_H_ */
+}  // namespace HKSTL
+#endif  // DLLIST_SHARED_H_
