@@ -1,17 +1,9 @@
-/*
- * ChainedHashTable.h
- *
- *  Created on: 2011-11-30
- *      Author: morin
- */
-
 #ifndef CHAINEDHASHTABLE_H_
 #define CHAINEDHASHTABLE_H_
 #include <climits>
-#include "utils.h"
 #include <vector>
 
-namespace mySTL {
+namespace HKSTL {
 
 template<class T>
 class ChainedHashTable {
@@ -20,7 +12,7 @@ protected:
 	typedef std::vector<chain> hashTable;
 	hashTable table;
 	long n;	// number of element
-	int d;
+	int d;  // size of hash table (1<<d)
 	int z;	// an odd random number for hash code
 	static const int w = 32; //sizeof(int)*8;
 	
@@ -29,12 +21,12 @@ protected:
 	int hash(T x) {
 		// Multiplicative hashing (based on modular arithmetic)
 		// hash(x) = ( (z*x) mod 2^w) div 2^(w-d) )
-		return ((unsigned)(z * hashCode(x))) >> (w-d);  	// z is odd number
+		return ((unsigned)(z * x)) >> (w-d);  	// z is odd number
 	}
 
 public:
 	ChainedHashTable();
-	virtual ~ChainedHashTable();
+	virtual ~ChainedHashTable() {};
 	bool add(T x);
 	bool remove(T x);
 	//bool find(T x);
@@ -45,14 +37,12 @@ public:
 	void clear();
 };
 
-/**
- * FIXME:  A copy-constructor for arrays would be useful here
- */
+// TODO(khyunjin):  A copy-constructor for arrays would be useful here
 template<class T>
 void ChainedHashTable<T>::resize() {
 	hashTable newTable;
 	newTable.resize(1<<d);
-	std::cout << "resize hashTable to " << (1<<d) << std::endl;
+	// std::cout << "resize hashTable to " << (1<<d) << std::endl;
 
 	// Re-hashing with larger hashTable
 	for (size_t i=0; i<table.size(); i++) {
@@ -71,12 +61,6 @@ ChainedHashTable<T>::ChainedHashTable() {
 	d = 10; // 1K entries (default)
 	z = rand() | 1;     // is a random odd integer
 	table.resize(1 << d);
-}
-
-
-
-template<class T>
-ChainedHashTable<T>::~ChainedHashTable() {
 }
 
 // Add takes a constant time without resizing
@@ -112,14 +96,11 @@ bool ChainedHashTable<T>::remove(T x) {
 	return false;
 }
 
-
 template<class T>
-//bool ChainedHashTable<T>::find(T x) {
 int ChainedHashTable<T>::find(T x) {
 	int idx = hash(x);
 	for (size_t i = 0; i < table[idx].size(); i++)
 		if (x == table[idx][i])
-	//		return true;
 			return i;
 	//return false;
 	return -1;
@@ -136,5 +117,5 @@ void ChainedHashTable<T>::clear() {
 	table = newTable;
 }
 
-} /* namespace ods */
-#endif /* CHAINEDHASHTABLE_H_ */
+}  // namespace HKSTL
+#endif  // CHAINEDHASHTABLE_H_

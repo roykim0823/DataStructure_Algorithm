@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ArrayBasedLists)
+project(HashTables)
 
 set(CMAKE_CXX_FLAGS "-std=c++14 -g -O0 -Werror -Wno-unused-variable -Wno-sign-compare")
 
