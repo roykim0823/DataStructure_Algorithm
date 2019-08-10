@@ -1,14 +1,7 @@
-/*
- * utils.h
- *
- *  Created on: 2011-11-23
- *      Author: morin
- */
-
 #ifndef UTILS_H_
 #define UTILS_H_
 
-namespace mySTL {
+namespace HKSTL {
 
 template<class T> inline
 T min(T a, T b) {
@@ -37,10 +30,8 @@ unsigned intValue(int x) {
 	return (unsigned)x;
 }
 
-/**
- * This is terrible - don't use it
- */
-int hashCode(int x);
+// TODO(khyunjin): add hash code
+int hashCode(int x) { return x; }
 
 template<class T> class XFastTrieNode1;
 
@@ -58,7 +49,7 @@ public:
 	}
 };
 
-} /* namespace ods */
+} /* namespace HKSTL */
 
 
 #endif /* UTILS_H_ */

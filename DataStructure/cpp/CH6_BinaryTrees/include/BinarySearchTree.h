@@ -1,10 +1,3 @@
-/*
- * BinarySearchTree.h
- *
- *  Created on: 2011-11-28
- *      Author: morin
- */
-
 #ifndef BINARYSEARCHTREE_H_
 #define BINARYSEARCHTREE_H_
 #include <climits>
@@ -12,7 +5,7 @@
 #include "utils.h"
 #include "BinaryTree.h"
 
-namespace mySTL {
+namespace HKSTL {
 
 template<typename T>
 class BinarySearchTree : public BinaryTree<T> {
@@ -182,7 +175,6 @@ bool BinarySearchTree<T>::remove(T x) {
 template<typename T> inline
 int BinarySearchTree<T>::size() {
 	return n;
-	//return BinaryTree<T>::size2();
 }
 
 template<typename T> inline
@@ -231,5 +223,5 @@ void BinarySearchTree<T>::rotateRight(BTNode<T> *u) {
 	if (u == root) { root = w; root->parent = nullptr; }
 }
 
-} /* namespace ods */
-#endif /* BINARYSEARCHTREE_H_ */
+}  // namespace HKSTL
+#endif  // BINARYSEARCHTREE_H_

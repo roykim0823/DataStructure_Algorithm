@@ -1,20 +1,11 @@
-/*
- * BinaryTree.h
- *
- *  Created on: 2011-11-28
- *      Author: morin
- */
-
 #ifndef BINARYTREE_H_
 #define BINARYTREE_H_
-//#include <cstdlib>
-//#include "ArrayDeque.h"
 #include <iostream>
 #include <vector>
 #include <new>
 #include <memory>
 
-namespace mySTL {
+namespace HKSTL {
 
 // Binary Tree Node
 template<typename T>
@@ -22,9 +13,9 @@ struct BTNode {
 	T data;
 	BTNode *left;
 	BTNode *right;
-	BTNode *parent;    	// for iterative version of traverse or size                
-                       	// without the parent field, list or stack is used to       
-						// keep track of the path from the current node to the root 
+	BTNode *parent;  // for iterative version of traverse or size                
+                   // without the parent field, list or stack is used to       
+						       // keep track of the path from the current node to the root 
 	BTNode() {
 		data = T();
 		left = right = parent = nullptr;
@@ -40,18 +31,18 @@ template<typename T>
 class BinaryTree {
 protected:
 	BTNode<T> *root;	
-	virtual int size(BTNode<T> *u);     	// from a node
-	virtual int height(BTNode<T> *u);      	// from a node
-	virtual void traverse(BTNode<T> *u);   	// from a node
+	virtual int size(BTNode<T> *u);  // from a node
+	virtual int height(BTNode<T> *u);  // from a node
+	virtual void traverse(BTNode<T> *u);  // from a node
 public:
 	BinaryTree(): root(nullptr) {}
 	virtual ~BinaryTree();
 	virtual int depth(BTNode<T> *u);
-	virtual int size() 		{ return size(root); }	
-	virtual int height()    { return height(root); }
-	virtual void traverse() { return traverse(root); }
-	virtual int size2();    	// iterative version
-	virtual void traverse2();  	// iterative version
+	virtual int size()  { return size(root); }	
+	virtual int height()  { return height(root); }
+	virtual void traverse()  { return traverse(root); }
+	virtual int size_iter();    	// iterative version
+	virtual void traverse_iter();  	// iterative version
 	virtual void bfTraverse();
 	virtual void clear();
 };
@@ -127,7 +118,7 @@ void BinaryTree<T>::traverse(BTNode<T> *u) {
 // Traverse the tree (Iterative) -> Prevent stack overflow
 // Left, Right, Parent: Post-Order
 template<typename T>
-void BinaryTree<T>::traverse2() {
+void BinaryTree<T>::traverse_iter() {
 	BTNode<T> *u = root, *prev = nullptr, *next = nullptr;
 	while (u != nullptr) {
 		if (prev == u->parent) {
@@ -149,7 +140,7 @@ void BinaryTree<T>::traverse2() {
 // Size the tree (Iterative): same as tranverse2() except for counting "n"
 // Left, Right, Parent
 template<typename T>
-int BinaryTree<T>::size2() {
+int BinaryTree<T>::size_iter() {
 	BTNode<T> *u = root, *prev = nullptr, *next = nullptr;
    	int n = 0;
    	while (u != nullptr) {
@@ -183,5 +174,5 @@ void BinaryTree<T>::bfTraverse() {
 }
 
 
-} /* namespace ods */
-#endif /* BINARYTREE_H_ */
+}  // namespace HKSTL
+#endif  // BINARYTREE_H_

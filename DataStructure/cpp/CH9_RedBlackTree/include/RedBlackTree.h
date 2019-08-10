@@ -1,16 +1,9 @@
-/*
- * RedBlackTree.h
- *
- * Created on: 2011-11-30
- *   Author: morin
- */
-
 #ifndef REDBLACKTREE_H_
 #define REDBLACKTREE_H_
 
 #include "BinarySearchTree.h"
 
-namespace ods {
+namespace HKSTL {
 
 template<class Node, class T> class RedBlackTree;
 
@@ -303,5 +296,5 @@ Node* RedBlackTree<Node,T>::findLast(T x) {
     BinarySearchTree<Node, T>::findLast(x);
 }
 
-} /* namespace ods */
-#endif /* REDBLACKTREE_H_ */
+}  // namespace HKSTL
+#endif  // REDBLACKTREE_H_
