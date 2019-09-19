@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Deque.h
+Vector.h
+../include/Vector.h
+
+../include/Vector.h
+iostream
+-
+algorithm
+-
+stdlib.h
+-
+assert.h
+-
+new
+-
+
+/home/roy/programming/DataStructure_Algorithm/DataStructure/MySTL/arrayBasedLists/src/test_deque.cpp
+cmath
+-
+cassert
+-
+ctime
+-
+cstdlib
+-
+iostream
+-
+Deque.h
+/home/roy/programming/DataStructure_Algorithm/DataStructure/MySTL/arrayBasedLists/src/Deque.h
+

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Array.h
+iostream
+-
+algorithm
+-
+stdlib.h
+-
+assert.h
+-
+new
+-
+
+/home/roy/programming/DataStructure_Algorithm/DataStructure/cpp/test/test_ArrayBasedLists.cc
+cmath
+-
+cassert
+-
+ctime
+-
+cstdlib
+-
+iostream
+-
+Array.h
+/home/roy/programming/DataStructure_Algorithm/DataStructure/cpp/test/Array.h
+

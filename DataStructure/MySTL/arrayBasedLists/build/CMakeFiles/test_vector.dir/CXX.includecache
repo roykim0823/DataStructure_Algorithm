@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Vector_unique_ptr.h
+iostream
+-
+algorithm
+-
+stdlib.h
+-
+assert.h
+-
+new
+-
+memory
+-
+
+/home/roy/programming/DataStructure_Algorithm/DataStructure/MySTL/arrayBasedLists/src/test_vector.cpp
+cmath
+-
+cassert
+-
+ctime
+-
+cstdlib
+-
+iostream
+-
+Vector_unique_ptr.h
+/home/roy/programming/DataStructure_Algorithm/DataStructure/MySTL/arrayBasedLists/src/Vector_unique_ptr.h
+

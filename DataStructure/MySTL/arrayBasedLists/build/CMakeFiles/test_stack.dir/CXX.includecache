@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/Stack.h
+Vector.h
+../include/Vector.h
+
+../include/Vector.h
+iostream
+-
+algorithm
+-
+stdlib.h
+-
+assert.h
+-
+new
+-
+
+/home/roy/programming/DataStructure_Algorithm/DataStructure/MySTL/arrayBasedLists/src/test_stack.cpp
+cmath
+-
+cassert
+-
+ctime
+-
+cstdlib
+-
+iostream
+-
+Stack.h
+/home/roy/programming/DataStructure_Algorithm/DataStructure/MySTL/arrayBasedLists/src/Stack.h
+
