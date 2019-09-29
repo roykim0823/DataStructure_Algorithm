@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=c++1z -g -Wall  -rdynamic CMakeFiles/test_qeueu.dir/src/test_qeueu.cpp.o  -o test_qeueu 
